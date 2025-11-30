@@ -1,0 +1,28 @@
+# Ignore Eclipse STS workspace metadata
+.metadata/
+.mvn/
+.project
+.classpath
+.settings/
+bin/
+logs/
+
+# Ignore all target folders in every microservice
+*/target/
+target/
+
+# Ignore IntelliJ, VSCode files
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Cache files
+*/EBWebView/
+*.dat
