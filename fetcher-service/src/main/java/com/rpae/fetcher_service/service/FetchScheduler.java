@@ -13,7 +13,7 @@ public class FetchScheduler {
 
 	private final FetcherService fetcherService;
 
-	@Scheduled(fixedRate = 10000)
+	@Scheduled(fixedRate = 900000)
 	public void RunFetch() {
 		fetcherService.fetchAll();
 	}

@@ -1,4 +1,4 @@
-package com.rpae.fetcher_service.DTOs;
+package com.rpae.common_lib.DTOs;
 
 import lombok.Data;
 

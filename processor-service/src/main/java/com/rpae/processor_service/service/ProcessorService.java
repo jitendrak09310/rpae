@@ -1,20 +1,20 @@
 package com.rpae.processor_service.service;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.client.RestTemplate;
 import com.rpae.processor_service.model.PriceDTO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class ProcessorService {
-	private static final Logger log = LoggerFactory.getLogger(ProcessorService.class);
+
+	private final RestTemplate restTemplate;
 
 	public PriceDTO processRaw(String rawData, String sourceName) {
 		PriceDTO priceDto = new PriceDTO();
@@ -24,7 +24,7 @@ public class ProcessorService {
 
 			if (sourceName.equalsIgnoreCase("Binance")) {
 				long timeStamp = System.currentTimeMillis();
-				log.info(sourceName);
+				log.info("rawData : " + rawData.length());
 				JsonNode node = new ObjectMapper().readTree(rawData);
 				if (node.has("symbol")) {
 					symbol = node.get("symbol").asText();
@@ -42,12 +42,12 @@ public class ProcessorService {
 					priceDto.setSourceName(sourceName);
 				}
 				priceDto.setTimestamp(timeStamp);
-				log.info("This is Binance symbol data ... : " + symbol);
-				log.info("This is Binance price data ... : " + price);
+//				log.info("This is Binance symbol data ... : " + symbol);
+//				log.info("This is Binance price data ... : " + price);
 
 			} else if (sourceName.equalsIgnoreCase("CoinGecko")) {
 				long timeStamp = System.currentTimeMillis();
-				log.info(sourceName);
+//				log.info(sourceName);
 				JsonNode node = new ObjectMapper().readTree(rawData);
 				if (node.has("symbol")) {
 					symbol = node.get("symbol").asText();
@@ -65,12 +65,14 @@ public class ProcessorService {
 					priceDto.setSourceName(sourceName);
 				}
 				priceDto.setTimestamp(timeStamp);
-				log.info("This is CoinGecko symbol data ... : " + symbol);
-				log.info("This is CoinGecko price data ... : " + price);
+//				log.info("This is CoinGecko symbol data ... : " + symbol);
+//				log.info("This is CoinGecko price data ... : " + price);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		restTemplate.postForObject("http://localhost:8082/api/history/saveHistory", priceDto, Void.class);
+
 		return priceDto;
 	}
 

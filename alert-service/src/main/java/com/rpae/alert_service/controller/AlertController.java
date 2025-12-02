@@ -9,31 +9,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rpae.alert_service.model.Alert;
-import com.rpae.alert_service.model.PriceDTO;
 import com.rpae.alert_service.service.AlertService;
+import com.rpae.common_lib.DTOs.PriceDTO;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@RequestMapping("/api/alerts")
 @RequiredArgsConstructor
-@RequestMapping("/alerts")
+@Slf4j
 public class AlertController {
 
 	private final AlertService alertService;
 
-	@PostMapping
+	@PostMapping("/createAlert")
 	public Alert createAlert(@RequestBody Alert alert) {
 		return alertService.createAlert(alert);
 	}
 
-	@GetMapping
+	@GetMapping("/getAllAlerts")
 	public List<Alert> getAllAlerts() {
 		return alertService.getAll();
 	}
 
-	@PostMapping("/check")
-	public void check(@RequestBody PriceDTO priceDto) {
-		alertService.checkAlerts(priceDto);
+	@PostMapping("/checkAlertsBySymbol")
+	public void checkAlertsBySymbol(@RequestBody PriceDTO priceDto) {
+		alertService.checkAlertsBySymbol(priceDto);
 	}
 
 }

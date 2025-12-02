@@ -1,10 +1,10 @@
-package com.rpae.gateway;
+package com.rpae.documentation_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GatewayApplicationTests {
+class DocumentationServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

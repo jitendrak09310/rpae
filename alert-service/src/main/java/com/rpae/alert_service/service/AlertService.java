@@ -2,11 +2,16 @@ package com.rpae.alert_service.service;
 
 import java.util.List;
 
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.rpae.alert_service.model.Alert;
-import com.rpae.alert_service.model.PriceDTO;
 import com.rpae.alert_service.repository.AlertRepository;
+import com.rpae.common_lib.DTOs.NotificationDTO;
+import com.rpae.common_lib.DTOs.PriceDTO;
+import com.rpae.common_lib.DTOs.UserAlertDTO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,38 +22,53 @@ import lombok.extern.slf4j.Slf4j;
 public class AlertService {
 
 	private final AlertRepository repo;
+	private final RestTemplate restTemplate;
 
-	public void checkAlerts(PriceDTO priceDto) {
-		List<Alert> alerts = repo.findByActiveTrue();
+	public void checkAlertsBySymbol(PriceDTO priceDto) {
+		log.info("Inside Check Alerts : " + priceDto.getSymbol());
 
-		for (Alert alert : alerts) {
-			if (!alert.getSymbol().equalsIgnoreCase(priceDto.getSymbol())) {
-				continue;
-			}
+		List<UserAlertDTO> alerts = restTemplate
+				.exchange("http://localhost:8086/api/user-alerts/getAlertsBySymbol?symbol=" + priceDto.getSymbol(),
+						HttpMethod.GET, null, new ParameterizedTypeReference<List<UserAlertDTO>>() {
+						})
+				.getBody();
 
-			Double price = priceDto.getPrice();
-
-			if (price == null)
-				continue;
-
-			if (alert.getUpperLimit() != null && price > alert.getUpperLimit()) {
-				log.info("🔥 ALERT! {} crossed upper limit {}", alert.getSymbol(), alert.getUpperLimit());
-			}
-
-			// Check lower limit
-			if (alert.getLowerLimit() != null && price < alert.getLowerLimit()) {
-				log.info("⚠ ALERT! {} dropped below {}", alert.getSymbol(), alert.getLowerLimit());
-			}
+		if (alerts == null || alerts.isEmpty()) {
+			log.info("No Alerts found for Symbol : " + priceDto.getSymbol());
+			return;
 		}
 
+		for (UserAlertDTO alert : alerts) {
+			if (alert.getUpperLimit() != null && priceDto.getPrice() > alert.getUpperLimit()) {
+				log.info("Alert : Upper limit crossed for user :" + alert.getUserEmail());
+				notifyUser(alert.getUserEmail(), priceDto);
+			}
+
+			if (alert.getLowerLimit() != null && priceDto.getPrice() < alert.getLowerLimit()) {
+				log.info("Alert : Lower limit crossed for user :" + alert.getUserEmail());
+				notifyUser(alert.getUserEmail(), priceDto);
+			}
+		}
 	}
-	
+
+	public void notifyUser(String userEmail, PriceDTO priceDto) {
+
+		NotificationDTO notificationDTO = new NotificationDTO();
+		notificationDTO.setUserEmail(userEmail);
+		notificationDTO.setSourceName(priceDto.getSourceName());
+		notificationDTO.setSymbol(priceDto.getSymbol());
+		notificationDTO.setTimeStamp(priceDto.getTimestamp());
+		notificationDTO.setPrice(priceDto.getPrice());
+		restTemplate.postForObject("http://localhost:8083/api/notify/sendNotification", notificationDTO, void.class);
+		log.info("📩 Notification sent to {}", userEmail);
+	}
+
 	public Alert createAlert(Alert alert) {
-	    return repo.save(alert);
+		return repo.save(alert);
 	}
 
 	public List<Alert> getAll() {
-	    return repo.findAll();
+		return repo.findAll();
 	}
 
 }

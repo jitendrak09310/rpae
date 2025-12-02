@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.rpae.fetcher_service.DTOs.SourceDTO;
+import com.rpae.common_lib.DTOs.SourceDTO;
 import com.rpae.fetcher_service.client.SourceClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +37,7 @@ public class FetcherService {
 				System.out.println(rawJson);
 
 				String processedJson = restTemplate.postForObject(
-						"http://localhost:8084/process?sourceName=" + sourceDto.getName(), sourceDto, String.class);
+						"http://localhost:8084/api/processor/process?sourceName=" + sourceDto.getName(), sourceDto, String.class);
 				log.info(processedJson);
 				
 				System.out.println("*****************************************  rawJson ");

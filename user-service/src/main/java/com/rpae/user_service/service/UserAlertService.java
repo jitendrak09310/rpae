@@ -1,0 +1,24 @@
+package com.rpae.user_service.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.rpae.user_service.UserAlert;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class UserAlertService {
+
+	private final UserAlertRepository userAlertRepo;
+
+	public UserAlert createAlert(UserAlert userAlert) {
+		return userAlertRepo.save(userAlert);
+	}
+
+	public List<UserAlert> getAlertsBySymbol(String symbol) {
+		return userAlertRepo.findBySymbolAndActive(symbol, true);
+	}
+}
