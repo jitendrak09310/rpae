@@ -10,4 +10,6 @@ public interface AlertRepository extends JpaRepository<Alert, Long> {
 
 	List<Alert> findByActiveTrue();
 
+	List<Alert> findByUserId(String userId);
+
 }

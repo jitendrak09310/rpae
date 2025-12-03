@@ -1,12 +1,13 @@
 package com.rpae.fetcher_service.client;
 
 import java.util.Arrays;
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.rpae.common_lib.DTOs.SourceDTO;
+import com.rpae.common_lib.DTOs.source.SourceDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +18,8 @@ public class SourceClient {
 	private final RestTemplate restTemplate;
 
 	public List<SourceDTO> getActiveSources() {
-		SourceDTO[] sources = restTemplate.getForObject("http://localhost:8085/api/sources/getSources", SourceDTO[].class);
+		SourceDTO[] sources = restTemplate.getForObject("http://localhost:8085/api/sources/getSources",
+				SourceDTO[].class);
 		return Arrays.asList(sources);
 
 	}

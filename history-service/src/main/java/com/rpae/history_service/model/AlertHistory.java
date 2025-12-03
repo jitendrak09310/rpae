@@ -13,16 +13,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "price_history")
-public class PriceHistory {
-
+@Table(name = "alert_history")
+public class AlertHistory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	private String alertId;
+	private String userId;
 	private String symbol;
 	private double price;
-	private String sourceName;
+	private double threshold;
+	private String condition;
 
 	private long timestamp;
 }

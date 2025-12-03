@@ -1,16 +1,14 @@
 package com.rpae.alert_service.controller;
 
 import java.util.List;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.rpae.alert_service.model.Alert;
 import com.rpae.alert_service.service.AlertService;
-import com.rpae.common_lib.DTOs.PriceDTO;
+import com.rpae.common_lib.DTOs.notification.PriceDTO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

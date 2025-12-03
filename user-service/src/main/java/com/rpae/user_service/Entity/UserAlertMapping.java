@@ -1,4 +1,4 @@
-package com.rpae.history_service.model;
+package com.rpae.user_service.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,16 +13,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "price_history")
-public class PriceHistory {
-
+@Table(name = "user_alert_mappings")
+public class UserAlertMapping {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String symbol;
-	private double price;
-	private String sourceName;
-
-	private long timestamp;
+	private String userId;
+	private Long alertId;
 }

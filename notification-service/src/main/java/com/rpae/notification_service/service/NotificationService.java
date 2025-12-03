@@ -2,7 +2,7 @@ package com.rpae.notification_service.service;
 
 import org.springframework.stereotype.Service;
 
-import com.rpae.notification_service.model.PriceDTO;
+import com.rpae.common_lib.DTOs.notification.PriceDTO;
 
 import lombok.extern.slf4j.Slf4j;
 

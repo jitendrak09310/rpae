@@ -1,0 +1,12 @@
+package com.rpae.common_lib.DTOs.notification;
+
+import lombok.Data;
+
+@Data
+public class PriceDTO {
+
+	private String sourceName;
+	private String symbol;
+	private Double price;
+	private Long timeStamp;
+}

@@ -13,16 +13,17 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "alerts")
 public class Alert {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	private String userId;
 	private String symbol;
-	private Double upperLimit;
-	private Double lowerLimit;
-	private String sourceName;
-	private Boolean active;
+	private double threshold;
+	private String condition; // ABOVE / BELOW / EQUAL
+	private boolean active;
+	private long createdAt;
 
 }

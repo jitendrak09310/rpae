@@ -2,13 +2,12 @@ package com.rpae.fetcher_service.service;
 
 import java.util.List;
 
-import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.rpae.common_lib.DTOs.SourceDTO;
+import com.rpae.common_lib.DTOs.source.SourceDTO;
 import com.rpae.fetcher_service.client.SourceClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,14 +31,15 @@ public class FetcherService {
 				log.info("Fetched URL from DB: '{}'", sourceDto.getUrl());
 				String rawJson = restTemplate.getForObject(sourceDto.getUrl(), String.class);
 				log.info(rawJson);
-				
+
 				System.out.println("*****************************************  rawJson ");
 				System.out.println(rawJson);
 
 				String processedJson = restTemplate.postForObject(
-						"http://localhost:8084/api/processor/process?sourceName=" + sourceDto.getName(), sourceDto, String.class);
+						"http://localhost:8084/api/processor/process?sourceName=" + sourceDto.getName(), sourceDto,
+						String.class);
 				log.info(processedJson);
-				
+
 				System.out.println("*****************************************  rawJson ");
 				System.out.println(processedJson);
 

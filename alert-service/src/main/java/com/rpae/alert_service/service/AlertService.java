@@ -2,6 +2,7 @@ package com.rpae.alert_service.service;
 
 import java.util.List;
 
+
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -9,9 +10,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.rpae.alert_service.model.Alert;
 import com.rpae.alert_service.repository.AlertRepository;
-import com.rpae.common_lib.DTOs.NotificationDTO;
-import com.rpae.common_lib.DTOs.PriceDTO;
-import com.rpae.common_lib.DTOs.UserAlertDTO;
+import com.rpae.common_lib.DTOs.alert.UserAlertDTO;
+import com.rpae.common_lib.DTOs.notification.NotificationDTO;
+import com.rpae.common_lib.DTOs.notification.PriceDTO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +58,7 @@ public class AlertService {
 		notificationDTO.setUserEmail(userEmail);
 		notificationDTO.setSourceName(priceDto.getSourceName());
 		notificationDTO.setSymbol(priceDto.getSymbol());
-		notificationDTO.setTimeStamp(priceDto.getTimestamp());
+		notificationDTO.setTimeStamp(priceDto.getTimeStamp());
 		notificationDTO.setPrice(priceDto.getPrice());
 		restTemplate.postForObject("http://localhost:8083/api/notify/sendNotification", notificationDTO, void.class);
 		log.info("📩 Notification sent to {}", userEmail);

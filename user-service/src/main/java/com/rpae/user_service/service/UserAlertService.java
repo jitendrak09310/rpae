@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.rpae.user_service.UserAlert;
+import com.rpae.user_service.Entity.UserAlert;
+import com.rpae.user_service.repository.UserAlertRepository;
 
 import lombok.RequiredArgsConstructor;
 
