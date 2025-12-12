@@ -1,0 +1,24 @@
+package com.rpae.history_service.controller;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rpae.history_service.model.PriceHistory;
+import com.rpae.history_service.repository.HistoryService;
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api")
+public class HistoryController {
+
+	private final HistoryService historyService;
+
+	@PostMapping("/saveHistory")
+	public void save(@RequestBody PriceHistory priceHistory) {
+		historyService.saveHistory(priceHistory);
+	}
+
+}

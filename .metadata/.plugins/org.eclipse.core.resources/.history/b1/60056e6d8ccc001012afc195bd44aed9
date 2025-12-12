@@ -1,0 +1,33 @@
+package com.rpae.processor_service.service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import com.rpae.fetcher_service.service.FetcherService;
+import com.rpae.processor_service.model.PriceDTO;
+
+import lombok.extern.slf4j.Slf4j;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
+
+@Slf4j
+@Service
+public class ProcessorService {
+	private static final Logger log = LoggerFactory.getLogger(ProcessorService.class);
+
+	public PriceDTO processRaw(String rawData, String sourceName) {
+
+		if (sourceName == "Binance") {
+			log.info(sourceName);
+			JsonNode node = new ObjectMapper().readTree(rawData);
+			String symbol = node.get("symbol").asText();
+			Double price = node.get("price").asDouble();
+
+		} else if (sourceName == "CoinGecko") {
+			log.info(sourceName);
+		}
+		return null;
+	}
+
+}

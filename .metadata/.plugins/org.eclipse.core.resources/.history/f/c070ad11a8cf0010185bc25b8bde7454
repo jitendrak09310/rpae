@@ -1,0 +1,9 @@
+package com.rpae.common_lib.DTOs;
+
+public class AlertRequest {
+	private String symbol;
+	private double threshold;
+	private String condition; // e.g. ABOVE, BELOW
+	private String userId;
+
+}

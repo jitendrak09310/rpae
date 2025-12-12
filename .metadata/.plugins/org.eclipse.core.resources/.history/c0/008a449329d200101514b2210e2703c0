@@ -1,0 +1,15 @@
+package com.rpae.source_service.config;
+
+import java.util.concurrent.Executor;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class AsyncConfig {
+
+	@Bean(name = "sourceExecutor")
+	public Executor sourceExecutor() {
+		ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+	}
+}

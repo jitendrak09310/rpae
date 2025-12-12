@@ -1,0 +1,5 @@
+package com.rpae.common_lib.DTOs.user;
+
+public class CreateUserRequest {
+
+}

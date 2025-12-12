@@ -1,0 +1,71 @@
+package com.rpae.alert_service.service;
+
+import java.util.List;
+
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.rpae.alert_service.DTOs.NotificationDTO;
+import com.rpae.alert_service.DTOs.PriceDTO;
+import com.rpae.alert_service.DTOs.UserAlertDTO;
+import com.rpae.alert_service.model.Alert;
+import com.rpae.alert_service.repository.AlertRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class AlertService {
+
+	private final AlertRepository repo;
+	private final RestTemplate restTemplate;
+
+	public void checkAlerts(PriceDTO priceDto) {
+		List<UserAlertDTO> alerts = restTemplate
+				.exchange("http://localhost:8086/user-alerts/getAlerts?symbol=" + priceDto.getSymbol(), HttpMethod.GET,
+						null, new ParameterizedTypeReference<List<UserAlertDTO>>() {
+						})
+				.getBody();
+
+		if (alerts == null || alerts.isEmpty()) {
+			log.info("No Alerts found for Symbol : " + priceDto.getSymbol());
+		}
+
+		for (UserAlertDTO alert : alerts) {
+			if (alert.getUpperLimit() != null && priceDto.getPrice() > alert.getUpperLimit()) {
+				log.info("Alert : Upper limit crossed for user :" + alert.getUserEmail());
+				notifyUser(alert.getUserEmail(), priceDto);
+			}
+
+			if (alert.getLowerLimit() != null && priceDto.getPrice() < alert.getLowerLimit()) {
+				log.info("Alert : Lower limit crossed for user :" + alert.getUserEmail());
+				notifyUser(alert.getUserEmail(), priceDto);
+			}
+		}
+	}
+
+	public void notifyUser(String userEmail, PriceDTO priceDto) {
+
+		NotificationDTO notificationDTO = new NotificationDTO();
+		notificationDTO.setUserEmail(userEmail);
+		notificationDTO.setSourceName(priceDto.getSourceName());
+		notificationDTO.setSymbol(priceDto.getSymbol());
+		notificationDTO.setTimeStamp(priceDto.getTimestamp());
+		notificationDTO.setPrice(priceDto.getPrice());
+		restTemplate.postForObject("http://localhost:8083/notify/send", notificationDTO, void.class);
+		log.info("📩 Notification sent to {}", userEmail);
+	}
+
+	public Alert createAlert(Alert alert) {
+		return repo.save(alert);
+	}
+
+	public List<Alert> getAll() {
+		return repo.findAll();
+	}
+
+}

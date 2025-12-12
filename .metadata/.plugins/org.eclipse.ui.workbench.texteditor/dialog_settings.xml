@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<section name="java.lang.Class">
+		<item key="replaceBarOpen" value="false"/>
+		<list key="findhistory">
+			<item value="penAPI"/>
+			<item value="spring-cloud.version"/>
+			<item value="&lt;spring-cloud.version&gt;2023.0.3&lt;/spring-cloud.version&gt;"/>
+			<item value="&lt;dependency&gt;"/>
+			<item value="lombok"/>
+			<item value="spring-boot-starter-parent"/>
+		</list>
+	</section>
+</section>

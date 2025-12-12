@@ -1,0 +1,27 @@
+server:
+  port: 9999
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: fetcher-service
+        url: http://localhost/api/fetcher/v3/api-docs
+
+      - name: history-service
+        url: http://localhost/api/history/v3/api-docs
+
+      - name: alert-service
+        url: http://localhost/api/alert/v3/api-docs
+
+      - name: processor-service
+        url: http://localhost/api/processor/v3/api-docs
+
+      - name: source-service
+        url: http://localhost/api/sources/v3/api-docs
+
+      - name: user-service
+        url: http://localhost/api/user-alerts/v3/api-docs
+
+      - name: notification-service
+        url: http://localhost/api/notify/v3/api-docs
+    path: /swagger-ui.html

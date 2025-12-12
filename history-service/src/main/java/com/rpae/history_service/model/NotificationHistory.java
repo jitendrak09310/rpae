@@ -1,0 +1,27 @@
+package com.rpae.history_service.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "notification_history")
+public class NotificationHistory {
+	@Id
+	private String notificationId;
+
+	private String userId;
+	private String alertId;
+	private String symbol;
+	private String channel;
+
+	private boolean success;
+	private String errorMessage;
+	private long timestamp;
+}

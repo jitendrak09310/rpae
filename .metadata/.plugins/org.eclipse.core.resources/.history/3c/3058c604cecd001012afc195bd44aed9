@@ -1,0 +1,11 @@
+package com.rpae.alert_service.DTOs;
+
+public class NotificationDTO {
+	
+	private String userEmail;
+	private String symbol;
+	private String sourceName;
+	private String timeStamp;
+	private Double price;
+
+}

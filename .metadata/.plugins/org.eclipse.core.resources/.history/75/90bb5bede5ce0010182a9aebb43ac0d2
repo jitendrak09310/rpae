@@ -1,0 +1,5 @@
+package com.rpae.source_service.config;
+
+public class OpenApiConfig {
+
+}

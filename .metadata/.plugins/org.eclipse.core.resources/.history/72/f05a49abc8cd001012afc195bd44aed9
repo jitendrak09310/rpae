@@ -1,0 +1,32 @@
+package com.rpae.user_service.controller;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rpae.user_service.UserAlert;
+import com.rpae.user_service.service.UserAlertService;
+
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/user-alerts")
+public class UserAlertController {
+
+	private final UserAlertService userAlertService;
+
+	@PostMapping("/create")
+	public UserAlert createAlert(@RequestBody UserAlert userAlert) {
+		return userAlertService.createAlert(userAlert);
+	}
+
+	public List<UserAlert> fetchBySymbol(@RequestParam String symbol) {
+		return userAlertService.getAlertsForSymbol(symbol);
+	}
+
+}

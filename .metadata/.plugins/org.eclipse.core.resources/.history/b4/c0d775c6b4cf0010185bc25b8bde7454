@@ -1,0 +1,8 @@
+package com.rpae.common_lib.DTOs.notification;
+
+public class Snippet {
+	public static void main(String[] args) {
+		PriceDTO
+	}
+}
+

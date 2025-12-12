@@ -1,0 +1,10 @@
+package com.rpae.processor_service.model;
+
+public class PriceDTO {
+
+	private String sourceName;
+	private String symbol;
+	private Double price;
+	private Long timestamp;
+
+}

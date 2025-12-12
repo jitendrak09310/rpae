@@ -1,0 +1,5 @@
+package com.rpae.user_service.service;
+
+public class UserAlertService {
+
+}

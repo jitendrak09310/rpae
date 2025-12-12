@@ -1,0 +1,5 @@
+package com.rpae.common_lib.DTOs.alert;
+
+public class UpdateAlertRequest {
+
+}

@@ -1,0 +1,8 @@
+package com.rpae.common_lib.DTOs;
+
+	public class PriceEvent {
+	    private String symbol;
+	    private double price;
+	    private String sourceName;
+	    private long timestamp;
+	}

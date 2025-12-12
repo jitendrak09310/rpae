@@ -1,0 +1,16 @@
+package com.rpae.user_service;
+
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@table(name = "users")
+public class User {
+
+	
+}

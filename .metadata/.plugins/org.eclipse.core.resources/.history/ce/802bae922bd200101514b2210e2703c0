@@ -1,0 +1,47 @@
+package com.rpae.source_service.controller;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rpae.common_lib.DTOs.source.CryptoCoinDTO;
+import com.rpae.common_lib.common.Constants;
+import com.rpae.source_service.model.Source;
+import com.rpae.source_service.service.SourceService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@RequestMapping("/api/sources")
+@RequiredArgsConstructor
+@Slf4j
+public class SourceController {
+
+	private final SourceService service;
+
+	@GetMapping("/getSources")
+	public List<Source> getSources() {
+		return service.getAll();
+	}
+
+	@PostMapping("/addSource")
+	public Source addSource(@RequestBody Source s) {
+		return service.save(s);
+	}
+
+	@GetMapping("/getAllCryptoCoins")
+	public List<CryptoCoinDTO> getAllCryptoCoins(@RequestParam String vs_currency) {
+		String url = String.format(Constants.CRYPTO_API_URL, vs_currency);
+		CompletableFuture<List<CryptoCoinDTO>> allCryptoCoins = service.getAllCryptoCoins(url);
+		
+		log.info("response from coinGecko :" + allCryptoCoins);
+		return allCryptoCoins;
+	}
+
+}

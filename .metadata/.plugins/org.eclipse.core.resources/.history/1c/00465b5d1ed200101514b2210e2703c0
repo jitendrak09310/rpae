@@ -1,0 +1,42 @@
+package com.rpae.source_service.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@Table(name = "crypto_coin")
+@NoArgsConstructor
+@AllArgsConstructor
+public class CryptoCoin {
+
+	@Id
+	@Column(name = "id", nullable = false, length = 50)
+	private String id;
+
+	@Column(name = "symbol", nullable = false, length = 20)
+	private String symbol;
+
+	@Column(name = "name", nullable = false, length = 100)
+	private String name;
+
+	@Column(name = "image", length = 500)
+	private String image;
+
+	@Column(name = "current_price")
+	private Long currentPrice;
+
+	@Column(name = "high_24h")
+	private Long high24h;
+
+	@Column(name = "low_24h")
+	private Long low24h;
+
+	@Column(name = "all_time_lowl")
+	private Long AllTimeLow;
+}

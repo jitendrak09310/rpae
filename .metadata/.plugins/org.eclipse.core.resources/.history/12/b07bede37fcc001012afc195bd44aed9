@@ -1,0 +1,19 @@
+package com.rpae.fetcher_service.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import ch.qos.logback.core.net.server.Client;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class FetcherService {
+	
+	private final RestTemplate restTemplate;
+	
+	private final Client client;
+	
+	
+
+}

@@ -1,0 +1,83 @@
+package com.rpae.processor_service.service;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rpae.processor_service.model.PriceDTO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service
+public class ProcessorService {
+
+
+	public PriceDTO processRaw(String rawData, String sourceName) {
+		PriceDTO priceDto = new PriceDTO();
+		Double price = null;
+		String symbol = null;
+//		try {
+//
+//			if (sourceName.equalsIgnoreCase("Binance")) {
+//				long timeStamp = System.currentTimeMillis();
+//				log.info(sourceName);
+//				JsonNode node = new ObjectMapper().readTree(rawData);
+//				if (node.has("symbol")) {
+//					symbol = node.get("symbol").asText();
+//				}
+//				if (node.has("price")) {
+//					price = node.get("price").asDouble();
+//				}
+//				if (StringUtils.isNotBlank(symbol)) {
+//					priceDto.setSymbol(symbol);
+//				}
+//				if (price != null) {
+//					priceDto.setPrice(price);
+//				}
+//				if (StringUtils.isNotBlank(sourceName)) {
+//					priceDto.setSourceName(sourceName);
+//				}
+//				priceDto.setTimestamp(timeStamp);
+//				log.info("This is Binance symbol data ... : " + symbol);
+//				log.info("This is Binance price data ... : " + price);
+//
+//			} else if (sourceName.equalsIgnoreCase("CoinGecko")) {
+//				long timeStamp = System.currentTimeMillis();
+//				log.info(sourceName);
+//				JsonNode node = new ObjectMapper().readTree(rawData);
+//				if (node.has("symbol")) {
+//					symbol = node.get("symbol").asText();
+//				}
+//				if (node.has("price")) {
+//					price = node.get("price").asDouble();
+//				}
+//				if (StringUtils.isNotBlank(symbol)) {
+//					priceDto.setSymbol(symbol);
+//				}
+//				if (price != null) {
+//					priceDto.setPrice(price);
+//				}
+//				if (StringUtils.isNotBlank(sourceName)) {
+//					priceDto.setSourceName(sourceName);
+//				}
+//				priceDto.setTimestamp(timeStamp);
+//				log.info("This is CoinGecko symbol data ... : " + symbol);
+//				log.info("This is CoinGecko price data ... : " + price);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		restTemplate.postForObject(
+			    "http://localhost:8087/history/save",
+			    priceDto,
+			    Void.class
+			);
+
+		return priceDto;
+	}
+
+}

@@ -1,0 +1,27 @@
+server:
+  port: 9999   # documentation-service port
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: source-service
+        url: http://localhost:8085/v3/api-docs
+
+      - name: history-service
+        url: http://localhost:8082/v3/api-docs
+
+      - name: fetcher-service
+        url: http://localhost:8081/v3/api-docs
+
+      - name: processor-service
+        url: http://localhost:8084/v3/api-docs
+
+      - name: alert-service
+        url: http://localhost:8080/v3/api-docs
+
+      - name: user-service
+        url: http://localhost:8086/v3/api-docs
+
+      - name: notification-service
+        url: http://localhost:8083/v3/api-docs
+    path: /swagger-ui.html

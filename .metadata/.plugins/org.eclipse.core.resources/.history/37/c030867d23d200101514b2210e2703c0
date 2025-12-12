@@ -1,0 +1,9 @@
+package com.rpae.common_lib.common;
+
+public class Constants {
+
+	public static final String CRYPTO_API_URL = "https://api.coingecko.com/api/v3/coins/markets";
+	public static final String INR = "inr";
+	public static final String USD = "inr";
+
+}

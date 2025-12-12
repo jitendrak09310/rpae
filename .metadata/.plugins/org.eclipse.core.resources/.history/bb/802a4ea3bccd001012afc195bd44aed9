@@ -1,0 +1,24 @@
+package com.rpae.history_service.model;
+
+import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class PriceHistory {
+
+	@jakarta.persistence.Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long Id;
+	private String sourceName;
+	private Long timeStamp;
+	private String symbol;
+	private Double price;
+
+}

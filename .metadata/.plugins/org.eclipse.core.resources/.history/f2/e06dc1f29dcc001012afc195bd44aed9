@@ -1,0 +1,5 @@
+package com.rpae.alert_service.controller;
+
+public class AlertController {
+
+}

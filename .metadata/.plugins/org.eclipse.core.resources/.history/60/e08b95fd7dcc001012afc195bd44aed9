@@ -1,0 +1,12 @@
+package com.rpae.fetcher_service.DTOs;
+
+public class SourceDTO {
+	
+	private Long id;
+
+	private String name;
+	private String url;
+	private String type;
+	private Boolean active;
+
+}

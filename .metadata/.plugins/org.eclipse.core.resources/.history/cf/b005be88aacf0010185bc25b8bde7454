@@ -1,0 +1,8 @@
+package com.rpae.common_lib.DTOs;
+
+import lombok.Data;
+
+@Data
+public class SourceResponse {
+
+}

@@ -1,0 +1,10 @@
+package com.rpae.notification_service.model;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "user_alert_mappings")
+public class NotificationLog {
+
+}

@@ -1,0 +1,5 @@
+package com.rpae.alert_service.model;
+
+public class Alert {
+
+}

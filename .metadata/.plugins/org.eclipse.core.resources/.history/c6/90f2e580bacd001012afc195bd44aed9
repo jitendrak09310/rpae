@@ -1,0 +1,17 @@
+package com.rpae.history_service.repository;
+
+import org.springframework.stereotype.Service;
+
+import com.rpae.history_service.model.PriceHistory;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class HistoryService {
+
+	public void saveHistory(PriceHistory priceHistory) {
+
+	}
+
+}

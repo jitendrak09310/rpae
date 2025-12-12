@@ -1,0 +1,5 @@
+package com.rpae.fetcher_service.config;
+
+public class AppConfig {
+
+}

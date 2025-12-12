@@ -1,0 +1,19 @@
+package com.rpae.notification_service.service;
+
+import org.springframework.stereotype.Service;
+
+import com.rpae.notification_service.model.PriceDTO;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j
+public class NotificationService {
+
+	public void sendNotification(PriceDTO priceDto) {
+		log.info(null);
+		
+	}
+	
+
+}

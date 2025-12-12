@@ -1,0 +1,10 @@
+package com.rpae.fetcher_service.service;
+
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.stereotype.Service;
+
+@EnableScheduling
+@Service
+public class FetchScheduler {
+
+}

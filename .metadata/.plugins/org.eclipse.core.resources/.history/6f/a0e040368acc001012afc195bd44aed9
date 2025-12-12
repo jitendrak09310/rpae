@@ -1,0 +1,14 @@
+package com.rpae.processor_service.controller;
+
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.rpae.processor_service.model.PriceDTO;
+
+public class ProcessorController {
+	
+	@PostMapping("/process")
+	public PriceDTO process() {
+		return 
+	}
+
+}

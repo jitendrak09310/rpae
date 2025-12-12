@@ -1,0 +1,25 @@
+package com.rpae.processor_service.controller;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rpae.processor_service.model.PriceDTO;
+import com.rpae.processor_service.service.ProcessorService;
+
+import lombok.RequiredArgsConstructor;
+
+
+@RestController
+@RequiredArgsConstructor
+public class ProcessorController {
+	
+	private final ProcessorService process;
+	
+	@PostMapping("/process")
+	public PriceDTO process(@RequestBody String rawData, @RequestParam String sourceName) {
+		return process.processRaw(rawData,sourceName);
+	}
+
+}

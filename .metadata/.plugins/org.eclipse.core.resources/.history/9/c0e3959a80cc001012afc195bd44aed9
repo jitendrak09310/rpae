@@ -1,0 +1,30 @@
+package com.rpae.fetcher_service.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.rpae.fetcher_service.DTOs.SourceDTO;
+import com.rpae.fetcher_service.client.SourceClient;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class FetcherService {
+
+	private final RestTemplate restTemplate;
+
+	private final SourceClient sourceClient;
+
+	public void fetchAll() {
+		
+		List<SourceDTO> activeSources = sourceClient.getActiveSources();
+		
+		for(SourceDTO sourceDto : activeSources) {
+			
+		}
+
+	}
+}

@@ -1,0 +1,13 @@
+package com.rpae.common_lib.DTOs;
+
+import lombok.Data;
+
+@Data
+public class UpdateSourceRequest {
+	private Long id;
+
+	private String sourceName;
+	private String url;
+	private Boolean active;
+
+}

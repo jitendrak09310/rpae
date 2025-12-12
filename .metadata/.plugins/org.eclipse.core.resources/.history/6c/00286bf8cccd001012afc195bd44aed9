@@ -1,0 +1,8 @@
+package com.rpae.alert_service.DTOs;
+
+import lombok.Data;
+
+@Data
+public class UserAlertDTO {
+
+}

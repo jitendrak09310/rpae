@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: gateway
+
+server:
+  port: 9090
+
+
+  cloud:
+    gateway:
+      routes:
+        - id: source-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/sources/**
+
+        - id: fetcher-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/fetcher/**
+
+        - id: processor-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/processor/**
+
+        - id: alert-service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/api/alerts/**
+
+        - id: notification-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/notify/**
+
+        - id: user-alerts-service
+          uri: http://localhost:8086
+          predicates:
+            - Path=/api/user-alerts/**
+
+        - id: history-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/history/**

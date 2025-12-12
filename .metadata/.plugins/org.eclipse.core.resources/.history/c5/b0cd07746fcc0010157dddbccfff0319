@@ -1,0 +1,12 @@
+package com.rpae.source_service.service;
+
+import org.springframework.stereotype.Service;
+
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class SourceService {
+
+}

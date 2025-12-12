@@ -1,0 +1,17 @@
+package com.rpae.user_service.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rpae.user_service.service.UserAlertService;
+
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/user-alerts")
+public class UserAlertController {
+
+	private final UserAlertService userAlertService;
+
+}

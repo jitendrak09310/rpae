@@ -1,0 +1,9 @@
+package com.rpae.user_service.service;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.rpae.user_service.UserAlert;
+
+public interface UserAlertRepository extends JpaRepository<UserAlert, Long> {
+
+}

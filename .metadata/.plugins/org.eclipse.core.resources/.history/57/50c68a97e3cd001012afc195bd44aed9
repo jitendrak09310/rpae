@@ -1,0 +1,22 @@
+package com.rpae.fetcher_service.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rpae.fetcher_service.service.FetcherService;
+
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+public class FetcherController {
+
+	private final FetcherService fetcherService;
+
+	@GetMapping("/test")
+	public String testFetch() {
+		fetcherService.fetchAll();
+		return "fetch Complete";
+	}
+
+}

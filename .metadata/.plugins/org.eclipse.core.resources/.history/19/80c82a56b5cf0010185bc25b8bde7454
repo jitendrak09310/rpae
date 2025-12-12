@@ -1,0 +1,5 @@
+package com.rpae.notification_service.model;
+
+public class NotificationLog {
+
+}

@@ -1,0 +1,42 @@
+package com.rpae.alert_service.controller;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rpae.alert_service.model.Alert;
+import com.rpae.alert_service.model.PriceDTO;
+import com.rpae.alert_service.service.AlertService;
+
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/alerts")
+public class AlertController {
+
+	private final AlertService alertService;
+
+	// 1️⃣ Create new alert rule
+	@PostMapping
+	public Alert createAlert(@RequestBody Alert alert) {
+		return alertService.createAlert(alert);
+	}
+
+	// 2️⃣ Get all alerts
+	@GetMapping
+	public List<Alert> getAllAlerts() {
+		return alertService.getAll();
+	}
+
+	// 3️⃣ Processor-service sends live price here
+	@PostMapping("/check")
+	public void check(@RequestBody PriceDTO priceDto) {
+		alertService.checkAlerts(priceDto);
+	}
+
+}

@@ -1,0 +1,8 @@
+package com.rpae.fetcher_service.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class FetchScheduler {
+
+}

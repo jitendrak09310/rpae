@@ -1,0 +1,24 @@
+package com.rpae.common_lib.DTOs.source;
+
+import lombok.Data;
+
+@Data
+public class CryptoCoinDTO {
+
+	private String id;
+
+	private String symbol;
+
+	private String name;
+
+	private String image;
+
+	private Long currentPrice;
+
+	private Long high24h;
+
+	private Long low24h;
+
+	private Long AllTimeLow;
+
+}

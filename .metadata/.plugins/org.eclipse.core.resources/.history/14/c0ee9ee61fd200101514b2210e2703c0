@@ -1,0 +1,23 @@
+package com.rpae.common_lib.DTOs.source;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.Data;
+
+@Data
+public class CryptoCoinDTO {
+
+	private String id;
+	private String symbol;
+	private String name;
+	private String image;
+	@JsonProperty
+	private Long currentPrice;
+	@JsonProperty
+	private Long high24h;
+	@JsonProperty
+	private Long low24h;
+	@JsonProperty
+	private Long AllTimeLow;
+
+}

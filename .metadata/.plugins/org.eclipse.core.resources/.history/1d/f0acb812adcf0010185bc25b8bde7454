@@ -1,0 +1,12 @@
+package com.rpae.common_lib.DTOs;
+
+import lombok.Data;
+
+@Data
+public class AlertRequest {
+	private String symbol;
+	private double threshold;
+	private String condition; // e.g. ABOVE, BELOW
+	private String userId;
+
+}

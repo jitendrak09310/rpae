@@ -1,0 +1,8 @@
+package com.rpae.common_lib.DTOs;
+
+public class PriceResponse {
+	private String sourceName;
+	private String symbol;
+	private double price;
+	private long timestamp;
+}
