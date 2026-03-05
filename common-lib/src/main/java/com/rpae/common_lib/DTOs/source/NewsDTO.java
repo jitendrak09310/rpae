@@ -1,0 +1,29 @@
+package com.rpae.common_lib.DTOs.source;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class NewsDTO {
+	@JsonProperty("title")
+	private String title;
+	@JsonProperty("summary")
+	private String summary;
+	@JsonProperty("url")
+	private String url;
+	@JsonProperty("image_url")
+	private String imageUrl;
+	@JsonProperty("pub_date")
+	private String pubDate;
+	@JsonProperty("source")
+	private String source;
+	@JsonProperty("topics")
+	private List<String> topics;
+}

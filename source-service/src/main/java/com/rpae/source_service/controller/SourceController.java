@@ -1,6 +1,7 @@
 package com.rpae.source_service.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rpae.common_lib.DTOs.source.BseMostActiveDTO;
+import com.rpae.common_lib.DTOs.source.CommodityDTO;
 import com.rpae.common_lib.DTOs.source.CryptoCoinDTO;
+import com.rpae.common_lib.DTOs.source.MetalPriceDTO;
+import com.rpae.common_lib.DTOs.source.MutualFundDTO;
+import com.rpae.common_lib.DTOs.source.NewsDTO;
 import com.rpae.common_lib.common.Constants;
 import com.rpae.source_service.model.Source;
 import com.rpae.source_service.service.SourceService;
@@ -41,6 +47,42 @@ public class SourceController {
 		CompletableFuture<List<CryptoCoinDTO>> allCryptoCoins = service.getAllCryptoCoins(url);
 		log.info("response from coinGecko :" + allCryptoCoins);
 		return allCryptoCoins;
+	}
+
+	@GetMapping("/getMetalPrices")
+	public CompletableFuture<MetalPriceDTO> getMetalPrices(@RequestParam String symbol) {
+		String metalUrl = String.format(Constants.METAL_API_URL, symbol);
+		log.info("URL>>>>>>>>>>>>>>>>>>>>>>>>>" + metalUrl);
+		CompletableFuture<MetalPriceDTO> metalDetails = service.getMetalPrice(metalUrl);
+		log.info("response from gold-api :" + metalDetails);
+		return metalDetails;
+	}
+
+	@GetMapping("/getMarketData")
+	public CompletableFuture<List<CommodityDTO>> getMarketData(@RequestParam String symbol) {
+		String url = String.format(Constants.SHARE_MARKET_URL, symbol);
+		CompletableFuture<List<CommodityDTO>> res = service.getMarketData(url);
+		log.info("response from indian api :" + res);
+		return res;
+	}
+
+	@GetMapping("/getMutualFunds")
+	public CompletableFuture<Map<String, Map<String, List<MutualFundDTO>>>> getMutualFunds(
+			@RequestParam String symbol) {
+		String url = String.format(Constants.SHARE_MARKET_URL, symbol);
+		return service.getMutualFunds(url);
+	}
+
+	@GetMapping("/getBseMostActive")
+	public CompletableFuture<List<BseMostActiveDTO>> getBseMostActive(@RequestParam String symbol) {
+		String url = String.format(Constants.SHARE_MARKET_URL, symbol);
+		return service.getBseMostActive(url);
+	}
+
+	@GetMapping("/getNews")
+	public CompletableFuture<List<NewsDTO>> getNews(@RequestParam String symbol) {
+		String url = String.format(Constants.SHARE_MARKET_URL, symbol);
+		return service.getNews(url);
 	}
 
 }

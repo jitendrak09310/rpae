@@ -1,5 +1,0 @@
-package com.rpae.history_service.repository;
-
-public class PriceHistoryRepository {
-
-}

@@ -2,22 +2,34 @@ package com.rpae.source_service.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.rpae.common_lib.DTOs.source.BseMostActiveDTO;
+import com.rpae.common_lib.DTOs.source.CommodityDTO;
 import com.rpae.common_lib.DTOs.source.CryptoCoinDTO;
+import com.rpae.common_lib.DTOs.source.MetalPriceDTO;
+import com.rpae.common_lib.DTOs.source.MutualFundDTO;
+import com.rpae.common_lib.DTOs.source.NewsDTO;
 import com.rpae.common_lib.common.Constants;
 import com.rpae.source_service.model.Source;
 import com.rpae.source_service.repository.SourceRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class SourceService {
 
 	private final SourceRepository repo;
@@ -38,4 +50,69 @@ public class SourceService {
 		return CompletableFuture.completedFuture(coins);
 	}
 
+	@Async("sourceExecutor")
+	public CompletableFuture<MetalPriceDTO> getMetalPrice(String metalUrl) {
+		try {
+			ResponseEntity<MetalPriceDTO> response = restTemplate.getForEntity(metalUrl, MetalPriceDTO.class);
+			log.info("response from gold api ..." + response);
+			return CompletableFuture.completedFuture(response.getBody());
+
+		} catch (Exception e) {
+			throw new RuntimeException("Failed to fetch result from api..", e);
+		}
+	}
+
+	public CompletableFuture<List<CommodityDTO>> getMarketData(String url) {
+		return CompletableFuture.supplyAsync(() -> {
+			HttpHeaders headers = new HttpHeaders();
+			headers.set("x-api-key", Constants.API_KEY);
+
+			HttpEntity<Void> entity = new HttpEntity<>(headers);
+
+			ResponseEntity<List<CommodityDTO>> response = restTemplate.exchange(url, HttpMethod.GET, entity,
+					new ParameterizedTypeReference<List<CommodityDTO>>() {
+					});
+
+			return response.getBody();
+		});
+	}
+
+	public CompletableFuture<Map<String, Map<String, List<MutualFundDTO>>>> getMutualFunds(String url) {
+		return CompletableFuture.supplyAsync(() -> {
+			HttpHeaders headers = new HttpHeaders();
+			headers.set("x-api-key", Constants.API_KEY);
+			HttpEntity<Void> entity = new HttpEntity<>(headers);
+
+			ResponseEntity<Map<String, Map<String, List<MutualFundDTO>>>> response = restTemplate.exchange(url,
+					HttpMethod.GET, entity,
+					new ParameterizedTypeReference<Map<String, Map<String, List<MutualFundDTO>>>>() {
+					});
+			return response.getBody();
+		});
+	}
+
+	public CompletableFuture<List<BseMostActiveDTO>> getBseMostActive(String url) {
+		return CompletableFuture.supplyAsync(() -> {
+			HttpHeaders headers = new HttpHeaders();
+			headers.set("x-api-key", Constants.API_KEY);
+			HttpEntity<Void> entity = new HttpEntity<>(headers);
+
+			ResponseEntity<List<BseMostActiveDTO>> response = restTemplate.exchange(url, HttpMethod.GET, entity,
+					new ParameterizedTypeReference<List<BseMostActiveDTO>>() {
+					});
+			return response.getBody();
+		});
+	}
+
+	public CompletableFuture<List<NewsDTO>> getNews(String url) {
+		return CompletableFuture.supplyAsync(() -> {
+			HttpHeaders headers = new HttpHeaders();
+			headers.set("x-api-key", Constants.API_KEY);
+			HttpEntity<Void> entity = new HttpEntity<>(headers);
+			ResponseEntity<List<NewsDTO>> response = restTemplate.exchange(url, HttpMethod.GET, entity,
+					new ParameterizedTypeReference<List<NewsDTO>>() {
+					});
+			return response.getBody();
+		});
+	}
 }

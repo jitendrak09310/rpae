@@ -1,5 +1,0 @@
-package com.rpae.common_lib.DTOs.source;
-
-public class SourceListResponse {
-
-}

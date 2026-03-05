@@ -1,5 +1,0 @@
-package com.rpae.alert_service.DTOs;
-
-public class UserAlertDTO {
-
-}

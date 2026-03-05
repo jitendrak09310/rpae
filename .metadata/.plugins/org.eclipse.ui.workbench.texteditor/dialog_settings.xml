@@ -2,11 +2,20 @@
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
-		<item key="replaceBarOpen" value="false"/>
+		<item key="replaceBarOpen" value="true"/>
 		<list key="findhistory">
+			<item value="MetalPriceDTO"/>
+			<item value="package com.rpae.common_lib.DTOs.source;"/>
+			<item value="&lt;plugin&gt;"/>
+			<item value="spring-boot-starter-actuator"/>
+			<item value="spring-boot-starter-web"/>
+			<item value="spring-boot-maven-plugin"/>
+			<item value="packaging"/>
+			<item value="&lt;spring-cloud.version&gt;2023.0.3&lt;/spring-cloud.version&gt;"/>
+			<item value="jar"/>
+			<item value="ckaging&gt;jar"/>
 			<item value="penAPI"/>
 			<item value="spring-cloud.version"/>
-			<item value="&lt;spring-cloud.version&gt;2023.0.3&lt;/spring-cloud.version&gt;"/>
 			<item value="&lt;dependency&gt;"/>
 			<item value="lombok"/>
 			<item value="spring-boot-starter-parent"/>

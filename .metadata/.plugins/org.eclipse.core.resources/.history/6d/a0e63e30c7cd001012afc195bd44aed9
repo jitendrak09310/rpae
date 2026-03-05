@@ -1,5 +1,0 @@
-package com.rpae.user_service.service;
-
-public interface UserAlertRepository implements{
-
-}

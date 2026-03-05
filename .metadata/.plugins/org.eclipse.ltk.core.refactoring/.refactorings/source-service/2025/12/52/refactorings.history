@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;source-service/src/main/resources/config/applicationlocal.properties&apos; to &apos;application-local.properties&apos;" description="Rename resource &apos;applicationlocal.properties&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/config/applicationlocal.properties" name="application-local.properties" stamp="1766582728327" updateReferences="true"/>
+</session>

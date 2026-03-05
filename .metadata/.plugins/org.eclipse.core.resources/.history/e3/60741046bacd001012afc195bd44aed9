@@ -1,8 +1,0 @@
-package com.rpae.history_service.repository;
-
-import org.springframework.stereotype.Service;
-
-@Service
-public class HistoryService {
-
-}

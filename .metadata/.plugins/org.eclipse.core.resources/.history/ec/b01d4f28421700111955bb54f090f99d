@@ -1,0 +1,50 @@
+package com.rpae.common_lib.DTOs.source;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class BseMostActiveDTO {
+
+	@JsonProperty("ticker")
+	private String ticker;
+	@JsonProperty("company")
+	private String company;
+	@JsonProperty("price")
+	private Double price;
+	@JsonProperty("percent_change")
+	private Double percentChange;
+	@JsonProperty("net_change")
+	private Double netChange;
+	@JsonProperty("bid")
+	private Double bid;
+	@JsonProperty("ask")
+	private Double ask;
+	@JsonProperty("high")
+	private Double high;
+	@JsonProperty("low")
+	private Double low;
+	@JsonProperty("open")
+	private Double open;
+	@JsonProperty("close")
+	private Double close;
+	@JsonProperty("volume")
+	private Long volume;
+	@JsonProperty("low_circuit_limit")
+	private Double lowCircuitLimit;
+	@JsonProperty("up_circuit_limit")
+	private Double upCircuitLimit;
+	@JsonProperty("overall_rating")
+	private String overallRating;
+	@JsonProperty("short_term_trend")
+	private String shortTermTrend;
+	@JsonProperty("long_term_trend")
+	private String longTermTrend;
+	@JsonProperty("52_week_low")
+	private Double weekLow52;
+	@JsonProperty("52_week_high")
+	private Double weekHigh52;
+}

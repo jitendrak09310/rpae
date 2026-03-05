@@ -1,5 +1,0 @@
-package com.rpae.common_lib.DTOs.history;
-
-public class NotificationHistoryRecord {
-
-}

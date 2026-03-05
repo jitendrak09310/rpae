@@ -1,0 +1,46 @@
+package com.rpae.common_lib.DTOs.source;
+
+import lombok.Data;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class CommodityDTO {
+
+	private String id;
+	private String messageTime;
+	private String product;
+	private String expiry;
+	private String productMonth;
+
+	// Price Fields
+	private String lastTradedPrice;
+	private String buyPrice;
+	private String sellPrice;
+	private String averageTradedPrice;
+	private String openPrice;
+	private String highPrice;
+	private String lowPrice;
+	private String closePrice;
+
+	// Quantity Fields
+	private String buyQuantity;
+	private String sellQuantity;
+	private String lastTradedQuantity;
+	private String totalQuantityTraded;
+
+	// Change Fields
+	private long change;
+	private double perChange;
+
+	// Open Interest Fields
+	private String openInterest;
+	private long openInterestChange;
+	private double openInterestPerChange;
+	private String oiResult;
+
+	// Meta Fields
+	private String lastTradedTime;
+	private String priceQuotationUnit;
+	private String quotationLot;
+}

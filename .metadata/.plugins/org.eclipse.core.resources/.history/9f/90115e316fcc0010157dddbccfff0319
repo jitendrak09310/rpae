@@ -1,7 +1,0 @@
-package com.rpae.source_service.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface SourceRepository extends JpaRepository<T, ID> {
-
-}
